@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: basic-ingress
+  namespace: spinnaker
+spec:
+  rules:
+  - host: spinnaker.localdomain
+    http:
+      paths:
+      - backend:
+          serviceName: spin-deck
+          servicePort: 9000  # Port 80 if using Operator, port 9000 if using Halyard
+        path: /
+  - host: gate.spinnaker.localdomain
+    http:
+      paths:
+      - backend:
+          serviceName: spin-gate
+          servicePort: 8084  # Port 80 if using Operator, port 8084 if using Halyard
+        path: /
